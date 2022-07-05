@@ -3,7 +3,11 @@
 
 // necessary for Collision creation
 // #include "Private/ConvexDecompTool.h"
+#if (ENGINE_MAJOR_VERSION == 5)
+#include "Developer/PhysicsUtilities/Public/ConvexDecompTool.h"
+#else
 #include "Editor/UnrealEd/Private/ConvexDecompTool.h"
+#endif
 // necessary for Collision creation KDOP
 
 #include "Runtime/Engine/Classes/PhysicsEngine/BodySetup.h"
@@ -102,13 +106,24 @@ void RStaticMeshUtils::CreateComplexCollision(UStaticMesh* OutMesh, uint32 InHul
 		FStaticMeshLODResources& LODModel = OutMesh->GetRenderData()->LODResources[0];
 
 		int32 NumVerts = LODModel.VertexBuffers.StaticMeshVertexBuffer.GetNumVertices();
-		TArray<FVector> Verts;
+		
+        #if (ENGINE_MAJOR_VERSION == 5)
+        TArray<FVector3f> Verts;
 
-		for(int32 i=0; i<NumVerts; i++)
-		{
-			FVector Vert = LODModel.VertexBuffers.PositionVertexBuffer.VertexPosition(i);
-			Verts.Add(Vert);
-		}
+        for (int32 i = 0; i < NumVerts; i++)
+        {
+            FVector3f Vert = LODModel.VertexBuffers.PositionVertexBuffer.VertexPosition(i);
+            Verts.Add(Vert);
+        }
+        #else
+        TArray<FVector> Verts;
+
+        for (int32 i = 0; i < NumVerts; i++)
+        {
+            FVector Vert = LODModel.VertexBuffers.PositionVertexBuffer.VertexPosition(i);
+            Verts.Add(Vert);
+        }
+        #endif
 
 		// Grab all indices
 		TArray<uint32> AllIndices;

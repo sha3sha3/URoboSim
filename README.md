@@ -3,7 +3,7 @@
 # URoboSim
 
 * Unreal Engine 4 based robot simulator with ROS integration
-* UE Version: **4.27**
+* UE Version: **5**
 * Version using [SDF](http://sdformat.org/) for loading robots.
 See `gzsdf` for converting `URDF` to `SDF`.
 

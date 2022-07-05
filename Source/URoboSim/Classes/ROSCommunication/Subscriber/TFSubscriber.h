@@ -2,6 +2,7 @@
 
 #include "Controller/RController.h"
 #include "RSubscriber.h"
+#include "Controller/ControllerType/SpecialController/RTFController.h"
 // clang-format off
 #include "TFSubscriber.generated.h"
 // clang-format on

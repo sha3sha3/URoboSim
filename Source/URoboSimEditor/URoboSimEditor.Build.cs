@@ -34,14 +34,19 @@ public class URoboSimEditor : ModuleRules
 				"URoboVision",
 				"UROSBridge",
 				"SlateCore",
-                                "XmlParser",
-                                "CustomMeshComponent",
-                                "ProceduralMeshComponent",
-                                "URoboSim",
-                                "URoboVision",
-                                "UnrealEd",
+                "XmlParser",
+                "CustomMeshComponent",
+                "ProceduralMeshComponent",
+                "URoboSim",
+                "URoboVision",
+                "UnrealEd"
+				
 			}
 			);
+
+		#if UE_5_0_OR_LATER
+		PrivateDependencyModuleNames.Add("PhysicsUtilities");
+		#endif
 
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
